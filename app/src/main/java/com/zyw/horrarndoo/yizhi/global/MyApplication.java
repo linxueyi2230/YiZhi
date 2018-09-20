@@ -34,7 +34,8 @@ public class MyApplication extends GlobalApplication {
 
         CrashReport.initCrashReport(getApplicationContext(), "c73ecc54da", false);
 
-        Shadow.image(R.drawable.ic_splash);
+//        Shadow.image(R.drawable.ic_splash);
+        Shadow.image(R.mipmap.bg_flash);
         Shadow.init("michael20180920lhbd", MainActivity.class);
     }
 
