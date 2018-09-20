@@ -15,15 +15,44 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        applicationId "com.zyw.horrarndoo.yizhi"
+        applicationId "com.horrarndoo.lhbd"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 10
         versionName "1.0.10"
+        flavorDimensions "versionCode"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         ndk { abiFilters "armeabi", "x86_64", "x86" }
+
+        manifestPlaceholders = [
+                jpush_appkey : '7b532a37d8af2a3ce6c06a1f'
+        ]
+
     }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+
+    productFlavors {
+        xiaomi {
+        }
+        huawei {
+        }
+        wandoujia {
+        }
+        vivo {
+        }
+        baidu {
+        }
+
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
@@ -42,18 +71,6 @@ android {
             // 移除无用的resource文件
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-            applicationVariants.all { variant -> //批量修改Apk名字
-                variant.outputs.all { output ->
-                    if (!variant.buildType.isDebuggable()) {
-                        //要被替换的源字符串
-                        def sourceFile = "-${variant.flavorName}-${variant.buildType.name}"
-                        //替换的字符串
-                        def replaceFile = "YiZhi_${variant.flavorName}_${variant.versionName}_${variant.buildType.name}_${buildTime()}"
-                        outputFileName = output.outputFile.name.replace(sourceFile, replaceFile);
-                    }
-                }
-            }
         }
     }
     lintOptions{
@@ -64,15 +81,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:27.1.1'
-    //Butterknife
-    //    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    implementation 'com.android.support:appcompat-v7:27.1.1'
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
-    testCompile 'junit:junit:4.12'
-    implementation project(':sdk')
-    debugImplementation project(':sdk')
-    releaseImplementation project(':sdk')
+    compile project(':sdk')
+    implementation (name:'shadow2-v1.1.2',ext:'aar')
 }

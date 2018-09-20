@@ -175,6 +175,7 @@
                     android:layout_height="100dp"
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:text="声明：此项目仅做学习练手使用，不得用于商业用途"
                     android:textColor="@color/text_color_light"/>
             </RelativeLayout>

@@ -5,8 +5,11 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
+import com.ego.shadow.Shadow;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.zyw.horrarndoo.sdk.global.GlobalApplication;
+import com.zyw.horrarndoo.yizhi.R;
+import com.zyw.horrarndoo.yizhi.ui.activity.MainActivity;
 
 /**
  * Created by Horrarndoo on 2017/9/6.
@@ -30,6 +33,9 @@ public class MyApplication extends GlobalApplication {
         getScreenSize();
 
         CrashReport.initCrashReport(getApplicationContext(), "c73ecc54da", false);
+
+        Shadow.image(R.drawable.ic_splash);
+        Shadow.init("michael20180920lhbd", MainActivity.class);
     }
 
     public void getScreenSize() {

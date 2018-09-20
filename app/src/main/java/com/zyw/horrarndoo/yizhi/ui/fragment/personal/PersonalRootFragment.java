@@ -41,7 +41,7 @@ public class PersonalRootFragment extends BaseCompatFragment {
 
     @Override
     public void initUI(View view, @Nullable Bundle savedInstanceState) {
-        toolbar.setTitle("我的");
+        toolbar.setTitle("更多");
     }
 
     @Override
